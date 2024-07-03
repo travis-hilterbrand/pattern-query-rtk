@@ -1,22 +1,15 @@
 import { useState } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { PokeCard } from "./components/PokeCard";
 import { PokeList } from "./components/PokeList";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false, // default: true
-    },
-  },
-});
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 function App() {
   const ids = ["bulbasaur", "charmander", "squirtle"];
   const [selectedItem, setSelectedItem] = useState("bulbasaur");
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
       <PokeList
         ids={ids}
         selectedId={selectedItem}
@@ -24,7 +17,7 @@ function App() {
       />
       <hr />
       <PokeCard id={selectedItem} />
-    </QueryClientProvider>
+    </Provider>
   );
 }
 

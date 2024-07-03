@@ -1,9 +1,6 @@
-import { useQuery } from "react-query";
-import { Pokemon, getPokemon } from "../api/pokemon";
+import { useGetPokemonByIdQuery } from "../store/pokemonApiSlice";
 
 export const usePokemon = (id: string) => {
-  const { data, error, isLoading } = useQuery<Pokemon>(["pokemon", id], () =>
-    getPokemon(id)
-  );
+  const { data, error, isLoading } = useGetPokemonByIdQuery(id);
   return { data, error, isLoading };
 };

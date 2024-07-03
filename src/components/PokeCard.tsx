@@ -14,11 +14,12 @@ type PokeCardProps = {
   id: string;
 };
 export const PokeCard = ({ id }: PokeCardProps) => {
-  const { data, isLoading } = usePokemon(id);
+  const { data, error, isLoading } = usePokemon(id);
   return (
     <Container>
+      {error && <span>Error...</span>}
       {isLoading === true && <span>Loading...</span>}
-      {data && (
+      {data && !error && (
         <>
           <div style={{ fontWeight: 700 }}>{data.name}</div>
           <img alt="pokemon" src={data.sprites.front_shiny} />

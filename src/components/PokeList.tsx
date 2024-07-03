@@ -24,6 +24,7 @@ export const PokeList = ({ selectedId, ids, onSelect }: PokeListProps) => {
     <Container>
       {ids.map((id) => (
         <a
+          key={id}
           href="#"
           style={{ color: selectedId === id ? "rebeccapurple" : undefined }}
           onClick={() => onSelect(id)}
